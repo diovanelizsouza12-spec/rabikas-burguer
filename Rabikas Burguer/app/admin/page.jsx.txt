@@ -1,0 +1,62 @@
+"use client";
+
+import React from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Settings, PlusCircle, Printer, Clock } from "lucide-react";
+
+const adminOptions = [
+  "Adicionar novos produtos",
+  "Criar novas categorias",
+  "Alterar preços",
+  "Editar promoções",
+  "Controlar horários",
+  "Impressão manual de pedidos",
+];
+
+export default function AdminPage() {
+  return (
+    <div className="min-h-screen bg-[#0B0A78] text-white p-8">
+      <div className="max-w-6xl mx-auto">
+        
+        <div className="flex items-center gap-3 mb-8">
+          <Settings size={32} />
+          <h1 className="text-4xl font-bold">
+            Painel Administrativo
+          </h1>
+        </div>
+
+        <p className="mb-8 text-lg opacity-90">
+          Gerencie produtos, categorias, horários e pedidos da
+          Rabika's Burguer.
+        </p>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {adminOptions.map((item, index) => (
+            <Card
+              key={index}
+              className="rounded-2xl border-0 bg-white text-black shadow-lg"
+            >
+              <CardContent className="p-6 flex items-center gap-3">
+                <PlusCircle size={20} />
+                <span className="font-semibold">{item}</span>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        <div className="mt-10 space-y-4">
+          <Button className="bg-[#F4B400] text-black rounded-xl px-8 py-6">
+            <Printer className="mr-2" />
+            Imprimir Pedido
+          </Button>
+
+          <Button className="bg-white text-black rounded-xl px-8 py-6 ml-4">
+            <Clock className="mr-2" />
+            Alterar Horário de Funcionamento
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+}

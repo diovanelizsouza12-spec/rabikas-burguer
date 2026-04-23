@@ -1,0 +1,115 @@
+"use client";
+
+import React from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { ShoppingCart, Clock, MapPin, Phone } from "lucide-react";
+
+const categories = [
+  {
+    name: "Hambúrgueres",
+    products: [
+      { name: "X-Salada", price: "R$ 17,00" },
+      { name: "X-Burguer", price: "R$ 14,00" },
+      { name: "X-Bacon", price: "R$ 25,00" },
+      { name: "X-Tudo", price: "R$ 32,00" },
+      { name: "X-Da Casa", price: "R$ 42,00" },
+    ],
+  },
+  {
+    name: "Hot Dogs",
+    products: [
+      { name: "Hot Dog Tradicional", price: "R$ 15,00" },
+      { name: "X-Dog", price: "R$ 20,00" },
+    ],
+  },
+];
+
+export default function HomePage() {
+  return (
+    <div className="min-h-screen bg-[#0B0A78] text-white">
+      <header className="bg-[#F4B400] text-black px-6 py-8 shadow-lg">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+          <div>
+            <h1 className="text-5xl font-black">RABIKA'S</h1>
+            <p className="text-xl font-semibold">
+              Hamburgueria Artesanal
+            </p>
+            <p className="mt-3 text-lg font-medium">
+              Da chapa para o seu paladar.
+            </p>
+          </div>
+
+          <div className="text-right space-y-2">
+            <div className="flex items-center gap-2 justify-end">
+              <Clock size={18} />
+              <span>Terça a Domingo • 18:30 às 22:30</span>
+            </div>
+
+            <div className="flex items-center gap-2 justify-end">
+              <MapPin size={18} />
+              <span>Av. Olinkraft, Bairro Santa Catarina</span>
+            </div>
+
+            <div className="flex items-center gap-2 justify-end">
+              <Phone size={18} />
+              <span>(49) 99179-9706</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section className="max-w-6xl mx-auto px-6 py-10 text-center">
+        <h2 className="text-4xl font-bold mb-4">
+          Cardápio Digital + Pedido no WhatsApp
+        </h2>
+
+        <p className="text-lg opacity-90 mb-6">
+          Delivery e retirada • simples, rápido e intuitivo
+        </p>
+
+        <Button className="rounded-2xl text-lg px-8 py-6 bg-[#F4B400] text-black">
+          <ShoppingCart className="mr-2" />
+          Fazer Pedido
+        </Button>
+      </section>
+
+      <section className="max-w-6xl mx-auto px-6 pb-16 space-y-10">
+        {categories.map((category, index) => (
+          <div key={index}>
+            <h3 className="text-3xl font-bold mb-6 border-b border-white/20 pb-2">
+              {category.name}
+            </h3>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {category.products.map((item, i) => (
+                <Card
+                  key={i}
+                  className="rounded-2xl border-0 shadow-xl bg-white text-black"
+                >
+                  <CardContent className="p-6">
+                    <h4 className="text-xl font-bold">{item.name}</h4>
+
+                    <p className="text-2xl font-black mt-2 text-[#0B0A78]">
+                      {item.price}
+                    </p>
+
+                    <Input
+                      placeholder="Observações (sem cebola, extra bacon...)"
+                      className="mt-4"
+                    />
+
+                    <Button className="w-full mt-5 rounded-xl bg-[#F4B400] text-black">
+                      Adicionar ao Pedido
+                    </Button>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        ))}
+      </section>
+    </div>
+  );
+}
